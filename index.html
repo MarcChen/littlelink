@@ -7,7 +7,7 @@
   - theme-dark: Forces dark theme
 -->
 
-<html class="theme-auto" lang="en"> <!-- Update`class="theme-auto" with your preference -->
+<html class="theme-dark" lang="en"> <!-- Update`class="theme-auto" with your preference -->
 
   <head>
     <meta charset="utf-8">
@@ -29,10 +29,16 @@
     <!-- Author Information -->
     <meta name="author" content="Chen Marc">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/brands.css">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- LittleLink Extended Stylesheet (Optional) -->
     <!-- <link rel="stylesheet" href="css/brands-extended.css"> -->
@@ -43,59 +49,67 @@
 
 <body>
 
+    <canvas id="particle-canvas"></canvas>
+    <div class="cursor-glow"></div>
+
     <div class="container">
         <div class="column">
+            <div class="glass-card">
 
-            <!--
-              By default, the Avatar is rounded. Use the following:
-              - avatar--rounded: Automatically rounds the image
-              - avatar--soft: Slightly rounds the image
-              - avatar--none: Removes any rounding
+                <!--
+                  By default, the Avatar is rounded. Use the following:
+                  - avatar--rounded: Automatically rounds the image
+                  - avatar--soft: Slightly rounds the image
+                  - avatar--none: Removes any rounding
 
-              Be sure to replace the src with your own image path and update the alt text
-            -->
-            <img class="avatar avatar--rounded" src="images/marc-compressed.jpeg" srcset="images/marc-compressed.jpeg" alt="LittleLink">
+                  Be sure to replace the src with your own image path and update the alt text
+                -->
+                <div class="avatar-wrapper">
+                    <img class="avatar avatar--rounded" src="images/marc-compressed.jpeg" srcset="images/marc-compressed.jpeg" alt="LittleLink">
+                </div>
 
-            <!-- Replace with your name or brand -->
-            <h1>
-              <div>Marc Chen</div>
-            </h1>
+                <!-- Replace with your name or brand -->
+                <h1>
+                  <div>Marc Chen</div>
+                </h1>
 
-            <!-- Add a short description about yourself or your brand -->
-            <p>Junior Data Scientist X Data Engineer<br>Professional Links & Contact</p>
+                <!-- Add a short description about yourself or your brand -->
+                <p>Junior Data Scientist X Data Engineer<br>Professional Links & Contact</p>
 
-            <!-- All your buttons go here -->
-            <div class="button-stack" role="navigation">
+                <!-- All your buttons go here -->
+                <div class="button-stack" role="navigation">
 
-              <!-- Cal.com -->
-                <a class="button button-cal" href="https://cal.com/marc-chen" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="images/icons/cal.svg" alt="Cal.com Logo">Schedule with Cal.com
-                </a>
+                  <!-- Cal.com -->
+                    <a class="button button-cal" href="https://cal.com/marc-chen" target="_blank" rel="noopener" role="button">
+                    <img class="icon" aria-hidden="true" src="images/icons/cal.svg" alt="Cal.com Logo">Schedule with Cal.com
+                    </a>
 
-              <!-- GitHub -->
-              <a class="button button-github" href="http://github.com/marcChen/" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub
-              </a>
+                  <!-- GitHub -->
+                  <a class="button button-github" href="http://github.com/marcChen/" target="_blank" rel="noopener" role="button">
+                    <img class="icon" aria-hidden="true" src="images/icons/github.svg" alt="GitHub Logo">GitHub
+                  </a>
 
-              <!-- LinkedIn -->
-              <a class="button button-linked" href="https://www.linkedin.com/in/chen-marc/" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="images/icons/linkedin.svg" alt="LinkedIn Logo">LinkedIn
-              </a>
+                  <!-- LinkedIn -->
+                  <a class="button button-linked" href="https://www.linkedin.com/in/chen-marc/" target="_blank" rel="noopener" role="button">
+                    <img class="icon" aria-hidden="true" src="images/icons/linkedin.svg" alt="LinkedIn Logo">LinkedIn
+                  </a>
 
-              <!-- Generic Email -->
-                <a class="button button-default" href="mailto:bruce.kareem210@flounderfantasy.com" target="_blank" rel="noopener" role="button">   <!-- Not my real email adress :) -->
-                <img class="icon" aria-hidden="true" src="images/icons/generic-email.svg" alt="Email Icon">Email Us
-              </a>
+                  <!-- Generic Email -->
+                    <a class="button button-default" href="mailto:bruce.kareem210@flounderfantasy.com" target="_blank" rel="noopener" role="button">   <!-- Not my real email adress :) -->
+                    <img class="icon" aria-hidden="true" src="images/icons/generic-email.svg" alt="Email Icon">Email Us
+                  </a>
 
-              <!-- Generic Website -->
-              <a class="button button-default" href="https://marcchen.github.io/" target="_blank" rel="noopener" role="button">
-                <img class="icon" aria-hidden="true" src="images/icons/generic-website.svg" alt="Website Icon">Visit Website
-              </a>
-      </div>
+                  <!-- Generic Website -->
+                  <a class="button button-default" href="https://marcchen.github.io/" target="_blank" rel="noopener" role="button">
+                    <img class="icon" aria-hidden="true" src="images/icons/generic-website.svg" alt="Website Icon">Visit Website
+                  </a>
+                </div>
 
+            </div>
+        </div>
     </div>
-  </div>
 
+    <script src="js/effects.js"></script>
 </body>
 
 </html>
