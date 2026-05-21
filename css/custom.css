@@ -1,0 +1,427 @@
+/* ============================================
+   LittleLink Custom Override — Premium Redesign
+   Load AFTER reset.css, style.css, brands.css
+   ============================================ */
+
+/* ── Design Tokens ──────────────────────────── */
+:root {
+  --bg-1: #070b1a;
+  --bg-2: #0f0a2e;
+  --bg-3: #0a1628;
+  --bg-4: #120a28;
+
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-hover: rgba(255, 255, 255, 0.10);
+
+  --text-primary: #f0f0f5;
+  --text-secondary: rgba(240, 240, 245, 0.55);
+
+  --accent-1: #6366f1;   /* indigo  */
+  --accent-2: #8b5cf6;   /* violet  */
+  --accent-3: #06b6d4;   /* cyan    */
+
+  --glow-primary: rgba(99, 102, 241, 0.35);
+  --glow-secondary: rgba(139, 92, 246, 0.25);
+}
+
+/* ── Animated Gradient Background ───────────── */
+body {
+  background: linear-gradient(
+    135deg,
+    var(--bg-1),
+    var(--bg-2),
+    var(--bg-3),
+    var(--bg-4)
+  ) !important;
+  background-size: 400% 400% !important;
+  animation: gradientShift 20s ease infinite;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% { background-position: 0% 50%; }
+  25%  { background-position: 100% 0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0% 100%; }
+}
+
+/* ── Particle Canvas ────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Cursor Glow ────────────────────────────── */
+.cursor-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.07) 0%,
+    rgba(139, 92, 246, 0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: left, top;
+}
+.cursor-glow.active {
+  opacity: 1;
+}
+
+/* ── Container Override ─────────────────────── */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 460px !important;
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+/* ── Glass Card ─────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(1.2);
+  -webkit-backdrop-filter: blur(28px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 3rem 2rem 2.5rem;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.45),
+    0 1.5px 0 rgba(255, 255, 255, 0.04) inset;
+  animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* ── Avatar Glow Ring ───────────────────────── */
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.75rem;
+}
+
+.avatar-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3),
+    var(--accent-1)
+  );
+  animation: ringRotate 6s linear infinite;
+  z-index: 0;
+}
+
+.avatar-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3),
+    var(--accent-1)
+  );
+  animation: ringRotate 6s linear infinite;
+  filter: blur(16px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}
+
+.avatar {
+  width: 7rem !important;
+  height: 7rem !important;
+  border: 3px solid var(--bg-1) !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: block !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.85rem !important;
+  letter-spacing: -0.03em !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 0.15rem !important;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+  line-height: 1.2 !important;
+}
+
+.container p {
+  font-size: 0.9rem !important;
+  color: var(--text-secondary) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.015em;
+  line-height: 1.5 !important;
+  margin-bottom: 2.25rem !important;
+  animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  opacity: 0;
+}
+
+/* ── Button Stack ───────────────────────────── */
+.button-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* ── Button Redesign ────────────────────────── */
+.button,
+button {
+  /* Glass surface */
+  background: rgba(255, 255, 255, 0.05) !important;
+  background-image: none !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 14px !important;
+
+  /* Typography */
+  color: var(--text-primary) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.92rem !important;
+
+  /* Layout */
+  padding: 0.8rem 1.2rem !important;
+  width: 100% !important;
+  max-width: 320px;
+  min-height: 2.85rem !important;
+  margin-bottom: 0 !important;
+
+  /* Effects */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease !important;
+  position: relative;
+  overflow: hidden;
+
+  /* Entrance animation */
+  opacity: 0;
+  animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(0.4s + var(--i, 0) * 0.08s);
+}
+
+/* Shine layer on hover */
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.button:hover,
+button:hover {
+  background: var(--glass-hover) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    0 0 24px var(--glow-primary) !important;
+  filter: none !important;
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button:active,
+button:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ── Icons in Buttons ───────────────────────── */
+.icon {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.8;
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.button:hover .icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ── Entrance Animation ─────────────────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Ambient glow behind glass card ─────────── */
+.glass-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.12),
+    rgba(139, 92, 246, 0.08),
+    rgba(6, 182, 212, 0.08)
+  );
+  z-index: -1;
+  filter: blur(40px);
+  opacity: 0.6;
+  animation: ambientPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes ambientPulse {
+  from { opacity: 0.4; transform: scale(0.98); }
+  to   { opacity: 0.7; transform: scale(1.02); }
+}
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  color: var(--text-secondary) !important;
+}
+footer a {
+  color: var(--accent-1) !important;
+}
+
+/* ── Links ──────────────────────────────────── */
+a:not(.button) {
+  color: var(--accent-1) !important;
+}
+a:not(.button):hover {
+  color: var(--accent-2) !important;
+}
+
+/* ── Accessibility: Reduced Motion ──────────── */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+  }
+  .glass-card,
+  .glass-card::after,
+  h1,
+  .container p,
+  .button,
+  button {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .avatar-wrapper::before,
+  .avatar-wrapper::after {
+    animation: none !important;
+  }
+  .cursor-glow {
+    display: none !important;
+  }
+  #particle-canvas {
+    display: none !important;
+  }
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 550px) {
+  .container {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    width: 94% !important;
+  }
+  .glass-card {
+    padding: 2.25rem 1.25rem 2rem;
+    border-radius: 22px;
+  }
+  .glass-card::after {
+    border-radius: 22px;
+  }
+  h1 {
+    font-size: 1.6rem !important;
+  }
+  .container p {
+    font-size: 0.85rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+  .button,
+  button {
+    font-size: 0.88rem !important;
+    padding: 0.7rem 1rem !important;
+    border-radius: 12px !important;
+  }
+  .button::before {
+    border-radius: 12px !important;
+  }
+  .avatar {
+    width: 6rem !important;
+    height: 6rem !important;
+  }
+  .avatar-wrapper {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .glass-card {
+    padding: 1.75rem 1rem 1.5rem;
+  }
+  h1 {
+    font-size: 1.4rem !important;
+  }
+}
